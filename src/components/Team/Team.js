@@ -4,6 +4,7 @@ export const Team = (props) => {
     return (
         (props.employees.length > 0) &&
         <section className='team' style={{backgroundColor: props.secondaryColor}}>
+            <input type="color" value={props.secondaryColor} onChange={e => props.onColorChange(props.name, e.target.value)}/>
             <h3 style={{borderColor: props.primaryColor}}>{props.name}</h3>
             <div className="employees">
                 {props.employees.map(employee =>

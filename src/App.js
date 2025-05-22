@@ -5,7 +5,7 @@ import Team from "./components/Team";
 import Footer from "./components/Footer";
 
 const App = () => {
-    const teams = [
+    const [teams, setTeams] = useState([
         {
             name: 'Programação',
             primaryColor: '#57C278',
@@ -41,13 +41,21 @@ const App = () => {
             primaryColor: '#FF8A29',
             secondaryColor: '#FFEEDF',
         },
-    ];
+    ]);
     const [employees, setEmployees] = useState([]);
     const onEmployeeSubmit = (employee) => {
         setEmployees([...employees, employee]);
     }
     const deleteEmployee = (employee) => {
         //TODO
+    }
+    const setTeamColor = (name, color) => {
+        setTeams(teams.map(team => {
+            if (team.name === name) {
+                team.primaryColor = color;
+            }
+            return team;
+        }));
     }
 
     return (
@@ -61,6 +69,7 @@ const App = () => {
                       primaryColor={team.primaryColor}
                       secondaryColor={team.secondaryColor}
                       onDelete={deleteEmployee}
+                      onColorChange={setTeamColor}
                 />
             ))}
             <Footer/>

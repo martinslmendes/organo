@@ -13,6 +13,7 @@ export const Team = (props) => {
                               name={employee.name}
                               role={employee.role}
                               image={employee.image}
+                              onDelete={props.onDelete}
                     />)}
             </div>
         </section>

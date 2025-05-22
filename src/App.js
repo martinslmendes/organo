@@ -46,6 +46,9 @@ const App = () => {
     const onEmployeeSubmit = (employee) => {
         setEmployees([...employees, employee]);
     }
+    const deleteEmployee = (employee) => {
+        //TODO
+    }
 
     return (
         <div className="App">
@@ -57,6 +60,7 @@ const App = () => {
                       name={team.name}
                       primaryColor={team.primaryColor}
                       secondaryColor={team.secondaryColor}
+                      onDelete={deleteEmployee}
                 />
             ))}
             <Footer/>

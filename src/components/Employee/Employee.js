@@ -1,10 +1,10 @@
 import { IoIosRemoveCircle } from "react-icons/io";
 
-export const Employee = ({name, role, image, primaryColor, onDelete}) => {
+export const Employee = ({name, role, image, color, onDelete}) => {
     return (
         <div className="employee">
             <IoIosRemoveCircle size={25} className="delete" onClick={onDelete}/>
-            <div className="header" style={{backgroundColor: primaryColor}}>
+            <div className="header" style={{backgroundColor: color}}>
                 <img src={image} alt={name}/>
             </div>
             <div className="footer">

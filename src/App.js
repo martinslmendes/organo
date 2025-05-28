@@ -171,6 +171,9 @@ const App = () => {
     const onEmployeeSubmit = (employee) => {
         setEmployees([...employees, employee]);
     }
+    const onTeamSubmit = (team) => {
+        setTeams([...teams, team]);
+    }
 
     function deleteEmployee(employeeId) {
         setEmployees(employees.filter(employee => employee.id !== employeeId));
@@ -187,7 +190,8 @@ const App = () => {
 
     return (<div className="App">
         <Banner/>
-        <Form onSubmit={employee => onEmployeeSubmit(employee)} teams={teams.map(team => team.name)}/>
+        <Form onEmployeeSubmit={employee => onEmployeeSubmit(employee)} onTeamSubmit={team => onTeamSubmit(team)}
+              teams={teams.map(team => team.name)}/>
         {teams.map((team) => (<Team employees={employees.filter(employee => employee.team === team.name)}
                                     key={team.id}
                                     team={team}

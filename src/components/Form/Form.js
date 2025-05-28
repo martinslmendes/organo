@@ -2,25 +2,36 @@ import TextInput from "../TextInput";
 import Dropdown from "../Dropdown";
 import Button from "../Button";
 import {useState} from "react";
+import {v4 as uuid} from 'uuid';
 
 export const Form = (props) => {
     const [name, setName] = useState('');
     const [role, setRole] = useState('');
     const [image, setImage] = useState('');
     const [team, setTeam] = useState('');
+    const [teamName, setTeamName] = useState('');
+    const [teamColor, setTeamColor] = useState('');
 
-    const onSubmit = (e) => {
+    const onEmployeeSubmit = (e) => {
         e.preventDefault();
-        props.onSubmit({name, role, image, team});
+        const id = uuid();
+        props.onEmployeeSubmit({id, name, role, image, team});
         setName('');
         setRole('');
         setImage('');
         setTeam('');
     }
 
-    return (
-        <section className="form-container">
-            <form onSubmit={onSubmit}>
+    const onTeamSubmit = (e) => {
+        e.preventDefault();
+        const id = uuid();
+        props.onTeamSubmit({id, name: teamName, color: teamColor});
+        setTeamName('');
+        setTeamColor('');
+    }
+
+    return (<section className="form-container">
+            <form onSubmit={onEmployeeSubmit}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
                 <TextInput label="Nome"
                            placeholder="Digite o seu nome"
@@ -49,6 +60,23 @@ export const Form = (props) => {
                     Criar card
                 </Button>
             </form>
-        </section>
-    );
+            <form onSubmit={onTeamSubmit}>
+                <h2>Preencha os dados para criar o card do time</h2>
+                <TextInput label="Nome"
+                           placeholder="Digite o nome do time"
+                           required
+                           value={teamName}
+                           onChange={value => setTeamName(value)}
+                />
+                <TextInput label="Cor"
+                           placeholder="Digite a cor do time"
+                           required
+                           value={teamColor}
+                           onChange={value => setTeamColor(value)}
+                />
+                <Button type="submit">
+                    Criar time
+                </Button>
+            </form>
+        </section>);
 }

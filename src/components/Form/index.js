@@ -5,7 +5,7 @@ import {useState} from "react";
 import {v4 as uuid} from 'uuid';
 import './Form.css';
 
-const Form = (props) => {
+const Form = ({teams, onEmployeeSubmit, onTeamSubmit}) => {
     const [name, setName] = useState('');
     const [role, setRole] = useState('');
     const [image, setImage] = useState('');
@@ -13,26 +13,26 @@ const Form = (props) => {
     const [teamName, setTeamName] = useState('');
     const [teamColor, setTeamColor] = useState('#000000');
 
-    const onEmployeeSubmit = (e) => {
+    function submitEmployee(e) {
         e.preventDefault();
         const id = uuid();
-        props.onEmployeeSubmit({id, name, role, image, team});
+        onEmployeeSubmit({id, name, role, image, team});
         setName('');
         setRole('');
         setImage('');
         setTeam('');
     }
 
-    const onTeamSubmit = (e) => {
+    function submitTeam(e) {
         e.preventDefault();
         const id = uuid();
-        props.onTeamSubmit({id, name: teamName, color: teamColor});
+        onTeamSubmit({id, name: teamName, color: teamColor});
         setTeamName('');
         setTeamColor('#000000');
     }
 
     return (<section className="form-container">
-        <form onSubmit={onEmployeeSubmit}>
+        <form onSubmit={submitEmployee}>
             <h2>Preencha os dados para criar o card do colaborador</h2>
             <Input label="Nome"
                    placeholder="Digite o seu nome"
@@ -52,7 +52,7 @@ const Form = (props) => {
                    onChange={value => setImage(value)}
             />
             <Dropdown label="Time"
-                      items={props.teams}
+                      items={teams}
                       required={true}
                       value={team}
                       onChange={value => setTeam(value)}
@@ -61,7 +61,7 @@ const Form = (props) => {
                 Criar card
             </Button>
         </form>
-        <form onSubmit={onTeamSubmit}>
+        <form onSubmit={submitTeam}>
             <h2>Preencha os dados para criar o card do time</h2>
             <Input label="Nome"
                    placeholder="Digite o nome do time"

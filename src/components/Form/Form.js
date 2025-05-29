@@ -1,4 +1,4 @@
-import TextInput from "../TextInput";
+import TextInput from "../Input";
 import Dropdown from "../Dropdown";
 import Button from "../Button";
 import {useState} from "react";
@@ -69,6 +69,7 @@ export const Form = (props) => {
                            onChange={value => setTeamName(value)}
                 />
                 <TextInput label="Cor"
+                           type='color'
                            placeholder="Digite a cor do time"
                            required
                            value={teamColor}

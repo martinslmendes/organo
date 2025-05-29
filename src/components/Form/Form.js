@@ -1,4 +1,4 @@
-import TextInput from "../Input";
+import Input from "../Input";
 import Dropdown from "../Dropdown";
 import Button from "../Button";
 import {useState} from "react";
@@ -27,25 +27,25 @@ export const Form = (props) => {
         const id = uuid();
         props.onTeamSubmit({id, name: teamName, color: teamColor});
         setTeamName('');
-        setTeamColor('');
+        setTeamColor('#000000');
     }
 
     return (<section className="form-container">
             <form onSubmit={onEmployeeSubmit}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
-                <TextInput label="Nome"
+                <Input label="Nome"
                            placeholder="Digite o seu nome"
                            required={true}
                            value={name}
                            onChange={value => setName(value)}
                 />
-                <TextInput label="Cargo"
+                <Input label="Cargo"
                            placeholder="Digite o seu cargo"
                            required={true}
                            value={role}
                            onChange={value => setRole(value)}
                 />
-                <TextInput label="Imagem"
+                <Input label="Imagem"
                            placeholder="Informe o endereço da imagem"
                            value={image}
                            onChange={value => setImage(value)}
@@ -62,13 +62,13 @@ export const Form = (props) => {
             </form>
             <form onSubmit={onTeamSubmit}>
                 <h2>Preencha os dados para criar o card do time</h2>
-                <TextInput label="Nome"
+                <Input label="Nome"
                            placeholder="Digite o nome do time"
                            required
                            value={teamName}
                            onChange={value => setTeamName(value)}
                 />
-                <TextInput label="Cor"
+                <Input label="Cor"
                            type='color'
                            placeholder="Digite a cor do time"
                            required
